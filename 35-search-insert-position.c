@@ -25,6 +25,25 @@ Input: [1,3,5,6], 0
 Output: 0
 */
 
+int bsearchIterative(int* nums, int left, int right, int target) {
+    int mid;
+    while (left < right) {
+        mid = (left + right) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        }
+        if (nums[mid] < target) { // move right
+            left = mid + 1;
+        } else { // move left
+            right = mid - 1;
+        }
+    }
+    if (nums[left] < target) {
+        return left + 1;
+    }
+    return left;
+}
+
 int bsearchPosition(int * nums, int left, int right, int target) {
     int mid = (left + right) / 2;
     
@@ -42,5 +61,6 @@ int bsearchPosition(int * nums, int left, int right, int target) {
 }
 
 int searchInsert(int* nums, int numsSize, int target) {
-    return bsearchPosition(nums, 0, numsSize-1, target);
+    // return bsearchPosition(nums, 0, numsSize-1, target);
+    return bsearchIterative(nums, 0, numsSize - 1, target);
 }
