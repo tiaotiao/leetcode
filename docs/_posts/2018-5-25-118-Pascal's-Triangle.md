@@ -1,8 +1,9 @@
 ---
 title: 118 - Pascal's Triangle
+url: https://leetcode.com/problems/pascals-triangle/
 ---
 
-#### [Problem](https://leetcode.com/problems/pascals-triangle/description/)
+#### [Problem](https://leetcode.com/problems/pascals-triangle/)
 
 
 Given a non-negative integer numRows, generate the first numRows of Pascal's Triangle. 
@@ -36,7 +37,7 @@ for (int i = 0; i < numRows; i++) {
 }
 ```
 
-Note that the inner loop j is end up with j <= i. It's because the row number is start from 0, not 1. That's to say, the length of row i is i+1. For example, for the first row (i=0), the length for the row is 1. We can also rewrite it as j < i+1.
+Note that the inner loop j is end up with ```j <= i```. It's because the row number is start from 0, not 1. That's to say, the length of row i is i+1. For example, for the first row (i=0), the length for the row is 1. We can also rewrite it as ```j < i+1```.
 
 Let's consider the value of (i, j). For each value in the triangle, there are only two cases: boundary or non-boundary. We know value of (i, j) is the sum of (i-1, j-1) and (i-1, j) by the definition, except the boundaries. To deal with the boundaries, we can simply use if condition.
 
@@ -48,7 +49,7 @@ if (i != 0 && i != 1        // first two rows
 }
 ```
 
-Note the first two conditions i != 0 && i != 1, are included in the last tow conditions. So we simplify it by removing the first two conditions:
+Note the first two conditions ```i != 0 && i != 1```, are included in the last tow conditions. So we simplify it by removing the first two conditions:
 
 ```java
 if (j != 0 && j != i) {     // beginning and end of the row is boundary
