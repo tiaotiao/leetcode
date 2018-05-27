@@ -9,7 +9,8 @@
 {% for post in site.posts %}
 
 <!--title-->
-## {{ post.title }}
+# {{ post.title }}
+---
 
 <!--subtitle-->
 <!--
