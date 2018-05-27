@@ -1,10 +1,5 @@
-<!--
 {% for post in site.posts %}
-
-[{{ post.title }}](#{{ post.title | downcase | replace: " ", "-" | remove: "'" }})
-
-{% endfor %}
--->
+* [{{ post.title }}](#{{ post.title | downcase | replace: " ", "-" | remove: "'" }})  {% endfor %}
 
 {% for post in site.posts %}
 
@@ -22,5 +17,7 @@
 
 <!--post-->
 {{ post.excerpt }}
+
+[Top](#header_wrap)
 
 {% endfor %}
