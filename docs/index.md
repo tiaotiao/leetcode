@@ -8,8 +8,18 @@
 
 {% for post in site.posts %}
 
+<!--title-->
 ## {{ post.title }}
 
+<!--subtitle-->
+<!--
+{% assign date =  post.date | split: " " %}
+**Date:** {{ date[0] }}
+-->
+{% assign seperator = true %}
+**Tags:** {% for tag in post.tags %} `{{tag}}` {% endfor %} 
+
+<!--post-->
 {{ post.excerpt }}
 
 {% endfor %}

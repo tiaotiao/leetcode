@@ -1,6 +1,7 @@
 ---
 title: 119 - Pascal's Triangle II
 url: https://leetcode.com/problems/pascals-triangle-ii/
+tags: [easy]
 ---
 
 #### [Problem](https://leetcode.com/problems/pascals-triangle-ii/)

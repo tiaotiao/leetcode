@@ -1,6 +1,7 @@
 ---
 title: 118 - Pascal's Triangle
 url: https://leetcode.com/problems/pascals-triangle/
+tags: [easy, 2D-array]
 ---
 
 #### [Problem](https://leetcode.com/problems/pascals-triangle/)
