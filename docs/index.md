@@ -5,7 +5,6 @@
 
 <!--title-->
 # {{ post.title }}
----
 
 <!--subtitle-->
 <!--
@@ -13,7 +12,9 @@
 **Date:** {{ date[0] }}
 -->
 {% assign seperator = true %}
-**Tags:** {% for tag in post.tags %} `{{tag}}` {% endfor %} 
+{% for tag in post.tags %} `{{tag}}` {% endfor %} 
+
+---
 
 <!--post-->
 {{ post.excerpt }}
