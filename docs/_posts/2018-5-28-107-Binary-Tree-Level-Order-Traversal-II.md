@@ -31,7 +31,7 @@ return its bottom-up level order traversal as:
 
 Similar to the previous problem [102 - Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/), we can solve this problem by simply reversing the order of results of the previous problem.
 
-I'm going to use another approach to solve it. DFS is the most convenient way to do tree traversal. The idea is we want to put every node to the correct position of the result list during the DFS traversal. 
+I'm going to use another approach to solve it. `DFS` is the most convenient way to do tree traversal. The idea is we want to put every node to the correct position of the result list during the DFS traversal. 
 
 ```java
 void dfs(TreeNode node, int depth, List<List<Integer> resluts) {
@@ -48,7 +48,7 @@ void dfs(TreeNode node, int depth, List<List<Integer> resluts) {
 
 How to add the node to it's correct position? The fist thing is to find the list of level of current depth from the resluts. We use `List<List<Integer>> results` to represent the levels of the tree. We start from an empty list of resluts. During the DFS, if current depth is larger than the size of resluts, which means we reached a new level, we create a new list for this level and add it to resluts. If the depth of current node is smaller than the size of results, which means there is already a list for the level, we just get it from resluts.
 
-After we found the list of current level, we simply append the value of current node to the level. We can make sure the order of each level is correct (from left to right) because we are doing preorder visiting. For each node we visit the left subtree first, which guaranteed the left node is visited before the right node.
+After we found the list of current level, we simply append the value of current node to the level. We can make sure the order of each level is correct (from left to right) because we are doing preorder visiting. For each node we visit the left subtree first, which guaranteed the left node is always visited before the right node.
 
 ```java
 private void addToResults(int value, int depth, List<List<Integer>> results) {
