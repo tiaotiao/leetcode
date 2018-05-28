@@ -31,7 +31,7 @@ return its bottom-up level order traversal as:
 
 Similar to the previous problem [102 - Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/), we can solve this problem by simply reversing the order of results of the previous problem.
 
-I'm going to use another approach to solve it. `DFS` is the most convenient way to do tree traversal. The idea is we want to put every node to the correct position of the result list during the DFS traversal. 
+I'm going to use another approach to solve it. **DFS** is the most convenient way to do tree traversal. The idea is we want to put every node to the correct position of the result list during the DFS traversal. 
 
 ```java
 void dfs(TreeNode node, int depth, List<List<Integer> resluts) {
