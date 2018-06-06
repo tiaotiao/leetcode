@@ -50,3 +50,49 @@ class Solution {
     }
 }
 
+// O(n^2)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int sum = nums[i] + nums[j];
+                if (sum == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return null;
+    }
+}
+
+// O(n)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = target - nums[i];
+            if (map.containsKey(num)) {
+                int j = map.get(num);
+                return new int[]{j, i};
+            }
+            map.put(nums[i], i);
+        }
+        return null;
+    }
+}
+
+
+/////////////////////////////
+// test
+
+class Main {
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        
+        int[] nums = new int[]{2, 7, 11, 15};
+        int target = 9;
+        
+        int[] result = s.twoSum(nums, target);
+        System.out.printf("%d, %d\n", result[0], result[1]);
+    }
+}
