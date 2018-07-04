@@ -10,11 +10,11 @@ class Solution:
         
         n = len(prices)
         if n <= 1: return 0
+        if k >= n:
+            return self.maxProfit_unlimited_transactions(prices)
 
-        dp, m = [], []
-        for t in range(0, k+1):
-            dp.append(0)
-            m.append(-prices[0])
+        dp = [0 for i in range(k+1)]
+        m = [-prices[0] for i in range(k+1)]
 
         for i in range(1, n):
             for t in range(k, 0, -1):
@@ -22,6 +22,33 @@ class Solution:
                 dp[t] = max(dp[t], prices[i] + m[t])
         
         return dp[k]
+
+    def maxProfit_unlimited_transactions(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        
+        if len(prices) <= 1:
+            return 0
+        
+        total = 0
+
+        low, high = prices[0], prices[0]
+        for p in prices:
+            if p < high: # descending
+                # sell previous stock
+                total += high - low
+                # start a new section
+                low = p
+                high = p
+                continue
+            # increasing high <= p
+            high = p
+        # sum up last section
+        total += high - low
+        
+        return total
 
     def maxProfit_TimeLimitedExceeded(self, k, prices):
         """
