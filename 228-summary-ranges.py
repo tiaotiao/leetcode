@@ -36,7 +36,7 @@ class Solution:
 def main():
     s = Solution()
 
-    nums = [0,2,3,4,6,8,9]
+    nums = [0,2,3,4,6,8,9]  
 
     print(s.summaryRanges(nums))
 
