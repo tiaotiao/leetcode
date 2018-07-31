@@ -5,6 +5,32 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
+
+        return self.solution_n(height)
+
+    def solution_n(self, height):
+        if len(height) == 0: return 0
+        
+        left, right = 0, len(height) - 1
+        leftMax, rightMax = 0, 0
+        total = 0
+
+        while left < right:
+            if height[left] < height[right]:
+                if leftMax <= height[left]:
+                    leftMax = height[left]
+                else:
+                    total += leftMax - height[left]
+                left += 1
+            else:
+                if rightMax <= height[right]:
+                    rightMax = height[right]
+                else:
+                    total += rightMax - height[right]
+                right -= 1
+        return total
+
+    def solution_nlogn(self, height):
         columns = [(height[i], i) for i in range(len(height))]
 
         columns.sort(key = lambda c: c[0], reverse = True)
