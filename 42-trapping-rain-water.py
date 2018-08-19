@@ -6,9 +6,52 @@ class Solution(object):
         :rtype: int
         """
 
-        return self.solution_n(height)
+        return self.solution_monotonic_stack(height)
 
-    def solution_n(self, height):
+    def solution_monotonic_stack(self, height):
+        n = len(height)
+        if n == 0: return 0
+
+        water = 0
+        s = []  # stack
+        for i in range(n):
+            h = height[i]
+            while len(s) > 0 and height[s[-1]] <= h:
+                bottom = height[s.pop()]
+                left = -1 if len(s) == 0 else s[-1]
+                boundary = 0 if len(s) == 0 else min(h, height[s[-1]])
+                w = (i - left - 1) * (boundary - bottom)
+                if w > 0:
+                    water += w
+            s.append(i)
+        return water
+
+    def solution_n_boundaries(self, height):
+        n = len(height)
+        if n == 0: return 0
+
+        m = 0
+        leftmax = [0] * n
+        for i in range(n):
+            leftmax[i] = m
+            h = height[i]
+            if m < h: m = h
+        m = 0
+        rightmax = [0] * n
+        for i in range(n-1,-1,-1):
+            rightmax[i] = m
+            h = height[i]
+            if m < h: m = h
+        water = 0
+        for i in range(n):
+            w = 0
+            boundary = min(leftmax[i], rightmax[i])
+            w = boundary > height[i]
+            if w < 0: w = 0
+            water += w
+        return water
+
+    def solution_n_two_pointers(self, height):
         if len(height) == 0: return 0
         
         left, right = 0, len(height) - 1
