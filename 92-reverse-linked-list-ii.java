@@ -1,46 +1,80 @@
-/*
-Reverse a linked list from position m to n. Do it in one-pass.
 
-Note: 1 ≤ m ≤ n ≤ length of list.
 
-Example:
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
 
-Input: 1->2->3->4->5->NULL, m = 2, n = 4
-Output: 1->4->3->2->5->NULL
-*/
 
 class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        if (head == null) {
+        if (head == null) 
             return null;
-        }
-        if (m >= n) {
-            return head;
-        }
-        
-        ListNode node = head, prev = node, next;
-        ListNode before = null, after = null;
-        
-        int index = 0;
-        while(node != null) {
-            index += 1;
-            next = node.next;
 
-            if (index == m - 1) {
-                before = node;
-            }
-            if (index == n + 1) {
-                after = node;
-            }
-
-            // reverse
-            if (m <= index && index <= n) {
-                node.next = prev;
-            }
-
-            // to next node
-            prev = node;
-            node = next;
+        ListNode prev=null, post=head.next, p=head, q=null;
+        // find the starting position m
+        for (int i = 1; i < m; i++) {
+            prev = p;
+            p = p.next;
+            post = p.next;
         }
+        // reverse the middle
+        ListNode start = p;
+        // System.out.println("Start " + p.val);
+        for (int i = 0; i < n - m; i++) {
+            q = p;
+            p = post;
+            post = p.next;
+            p.next = q;
+            // System.out.println(q.val + " <- " + p.val);
+        }
+        ListNode end = p;
+        // System.out.println("End "+ p.val);
+        // connect prev and post
+        start.next = post;
+        if (prev != null) {
+            prev.next = end;
+        } else {
+            head = end;
+        }
+        return head;
+    }
+}
+
+
+class Main {
+    public static ListNode createList(int[] list) {
+        ListNode head = null;
+        ListNode tail = null;
+
+        for (int a: list) {
+            ListNode node = new ListNode(a);
+            if (head == null || tail == null) {
+                head = node;
+                tail = node;
+                continue;
+            }
+            tail.next = node;
+            tail = node;
+        }
+        return head;
+    }
+
+    public static void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val);
+            head = head.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+
+        ListNode head = createList(new int[]{3,5});
+
+        ListNode newList = s.reverseBetween(head, 1, 2);
+
+        printList(newList);
     }
 }
