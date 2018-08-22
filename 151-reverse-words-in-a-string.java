@@ -2,29 +2,21 @@
 import java.util.*;
 
 public class Solution {
-    
-    private void reverse(char[] c, int left, int right) {
-        while (left < right) {
-            char tmp = c[left];
-            c[left] = c[right];
-            c[right] = tmp;
-            left ++;
-            right --;
-        }
-    }
-    
-    private int moveTo(char[] c, int index, int left, int right) {
-        int i;
-        for (i = 0; left + i <= right; i++) {
-            c[index + i] = c[left + i];
-        }
-        if (index + i < c.length) {
-            c[index+i] = ' ';
-        }
-        return index+i+1;
-    }
-    
+
     public String reverseWords(String s) {
+        String[] ss = s.trim().split("\\s+");
+        
+        List<String> sl = Arrays.asList(ss);
+
+        Collections.reverse(sl);
+
+        ss = (String[])sl.toArray();
+
+        return String.join(" ", ss);
+    }
+
+    // in-place
+    public String reverseWords_inplace(String s) {
         char[] c = s.toCharArray();
         int left = -1, right = -1;
         int index = 0;
@@ -63,4 +55,26 @@ public class Solution {
         
         return str.trim();
     }
+        
+    private void reverse(char[] c, int left, int right) {
+        while (left < right) {
+            char tmp = c[left];
+            c[left] = c[right];
+            c[right] = tmp;
+            left ++;
+            right --;
+        }
+    }
+    
+    private int moveTo(char[] c, int index, int left, int right) {
+        int i;
+        for (i = 0; left + i <= right; i++) {
+            c[index + i] = c[left + i];
+        }
+        if (index + i < c.length) {
+            c[index+i] = ' ';
+        }
+        return index+i+1;
+    }
+    
 }
